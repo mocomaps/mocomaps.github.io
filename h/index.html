@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>You're Invited · Moco Maps</title>
-  <meta name="description" content="Someone invited you to a hangout on Moco Maps — see where the move is in MoCo." />
+  <title>You're Invited · Blazar</title>
+  <meta name="description" content="Someone invited you to a hangout on Blazar — see where the move is in MoCo." />
   <meta property="og:title" content="You're invited to a hangout" />
-  <meta property="og:description" content="Tap to see the plan and RSVP on Moco Maps." />
+  <meta property="og:description" content="Tap to see the plan and RSVP on Blazar." />
   <meta property="og:image" content="https://mocomaps.github.io/h/icon.png" />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#161106" />
   <script>
-    // Safari's Smart App Banner: "Open" if Moco Maps is installed, "Get" if
+    // Safari's Smart App Banner: "Open" if Blazar is installed, "Get" if
     // not. app-argument hands this exact link to the app, which opens the
     // hangout. Written during parsing so Safari sees it like a static tag.
     document.write('<meta name="apple-itunes-app" content="app-id=6791011626, app-argument=' +
@@ -45,7 +45,14 @@
       padding: max(28px, env(safe-area-inset-top)) 16px 26px;
       display: flex; justify-content: center;
     }
-    .band img { width: 180px; height: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,.35)); }
+    .wordmark {
+      font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -1px; color: var(--gold500);
+      text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,.35);
+    }
+    .wordmark span {
+      display: block; margin-top: 6px; font: 400 11px "Space Mono", ui-monospace, monospace;
+      letter-spacing: 1.6px; text-transform: uppercase; color: #FBF5E6; opacity: .75; text-shadow: none;
+    }
     main { width: 100%; max-width: 472px; padding: 0 16px; margin-top: -14px; }
     .card {
       background: var(--card); border: 1.5px solid var(--line); border-radius: 22px;
@@ -83,7 +90,7 @@
   </style>
 </head>
 <body>
-  <div class="band"><img src="wordmark.png" alt="Moco Maps" /></div>
+  <div class="band"><div class="wordmark">Blazar<span>The Blazer Radar</span></div></div>
   <main>
     <div class="card" id="card">
       <div class="skeleton" style="width:40%"></div>
@@ -92,9 +99,9 @@
     </div>
 
     <!-- One button: opens the app, or the App Store if it isn't installed -->
-    <a class="btn primary" id="open" href="https://apps.apple.com/app/id6791011626">Open in Moco Maps</a>
+    <a class="btn primary" id="open" href="https://apps.apple.com/app/id6791011626">Open in Blazar</a>
 
-    <p class="foot">Moco Maps · See where the move is in MoCo · <a href="https://yongniuz.github.io/mocomaps-privacy/#privacy">Privacy</a></p>
+    <p class="foot">Blazar · See where the move is in MoCo · <a href="https://yongniuz.github.io/mocomaps-privacy/#privacy">Privacy</a></p>
   </main>
 
   <script>
@@ -149,13 +156,13 @@
           body: JSON.stringify({ p_token: token }),
         });
         const h = res.ok ? await res.json() : null;
-        if (!h) return stateCard("This plan is gone", "It was deleted or it's already over. Open Moco Maps to see what's happening now.");
+        if (!h) return stateCard("This plan is gone", "It was deleted or it's already over. Open Blazar to see what's happening now.");
 
         const end = h.ends_at ? " – " + new Date(h.ends_at).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) : "";
         const counts = h.is_proposal
           ? `<div class="row">🙋 <span><b>${h.interested}</b> interested so far</span></div>`
           : `<div class="row">✅ <span><b>${h.going}</b> going${h.interested ? ` · ${h.interested} interested` : ""}</span></div>`;
-        document.title = `${h.name} · Moco Maps`;
+        document.title = `${h.name} · Blazar`;
         card.innerHTML = `
           <div class="kicker ${h.is_proposal ? "proposal" : ""}">${h.is_proposal ? "Proposed plan" : "You're invited"}${h.is_past ? '<span class="pill">Happened</span>' : ""}</div>
           <h1>${esc(h.name)}</h1>
