@@ -1,0 +1,19 @@
+:root { --bg: #0B0B0C; --card: #1A1717; --line: #332B2A; --text: #CFC7C2; --strong: #FBF6F2; --muted: #9C928C; --red: #E3262B; --gold: #E0A84A; }
+* { box-sizing: border-box; }
+body { margin: 0; background: radial-gradient(120% 60% at 50% -10%, #3A1414 0%, var(--bg) 60%) no-repeat, var(--bg); color: var(--text); font: 16px/1.7 -apple-system, "PingFang SC", system-ui, sans-serif; }
+main { max-width: 680px; margin: 0 auto; padding: 40px 20px 72px; }
+header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+header img { width: 56px; height: 56px; border-radius: 13px; }
+header a { text-decoration: none; }
+.brand { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; color: var(--strong); line-height: 1; }
+.tag { color: var(--muted); font-size: 14px; margin-top: 5px; }
+h1 { font-weight: 800; letter-spacing: -0.02em; color: var(--strong); font-size: 32px; line-height: 1.2; margin: 8px 0 6px; }
+h2 { color: var(--strong); font-size: 19px; margin: 34px 0 8px; }
+.lang { color: var(--gold); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 48px 0 0; }
+p, li { max-width: 64ch; }
+a { color: var(--red); }
+.updated { color: var(--muted); font-size: 14px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; margin: 22px 0; }
+.card p { margin: 0; }
+footer { margin-top: 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+@media (max-width: 480px) { h1 { font-size: 26px; } .brand { font-size: 26px; } }
