@@ -87,10 +87,6 @@
     .foot a { color: var(--muted); }
     .skeleton { background: var(--paper200); border-radius: 8px; height: 14px; margin: 10px 0; }
     .hidden { display: none; }
-    .inapp { text-align: center; font-size: 15px; line-height: 1.45; margin-top: 16px; }
-    .inapp b { font-weight: 700; }
-    .btn.plain { background: var(--paper200); color: var(--text); margin-top: 10px; border: none; cursor: pointer; }
-    .applink { display: block; text-align: center; font-size: 14px; color: var(--muted); margin-top: 14px; }
   </style>
 </head>
 <body>
@@ -104,14 +100,6 @@
 
     <!-- One button: opens the app, or the App Store if it isn't installed -->
     <a class="btn primary" id="open" href="https://apps.apple.com/app/id6791011626">Open in Blazar</a>
-
-    <!-- Shown only inside Instagram / TikTok / Snapchat / Facebook, whose built-in browsers
-         won't hand links to other apps. -->
-    <div id="inapp" class="hidden">
-      <p class="inapp">Opened from <span id="inappName">this app</span>? Tap <b>•••</b> at the top right, then <b>Open in external browser</b>.</p>
-      <button class="btn plain" id="copy" type="button">Copy link</button>
-      <a class="applink" href="https://apps.apple.com/app/id6791011626">Don't have Blazar? Get it on the App Store</a>
-    </div>
 
     <p class="foot">Blazar · See where the move is in MoCo · <a href="https://yongniuz.github.io/mocomaps-privacy/#privacy">Privacy</a></p>
   </main>
@@ -132,31 +120,10 @@
     const valid = /^[A-Za-z0-9]{8,64}$/.test(token);
     const card = document.getElementById("card");
 
-    // Instagram, TikTok, Snapchat and Facebook open links in their own browser, which never
-    // passes a link to another app and blocks jumping to the App Store. There the button is a
-    // plain link to the app (the likeliest thing to get through), and the page explains how to
-    // reopen it in Safari, where the link opens Blazar on its own.
-    const ua = navigator.userAgent;
-    const inAppName = /Instagram/i.test(ua) ? "Instagram"
-      : /musical_ly|TikTok|Bytedance/i.test(ua) ? "TikTok"
-      : /Snapchat/i.test(ua) ? "Snapchat"
-      : /FBAN|FBAV|FB_IAB|FBIOS/i.test(ua) ? "Facebook"
-      : null;
-
-    if (isIOS && inAppName) {
-      document.getElementById("open").href = valid ? "mocomaps://h/" + token : "mocomaps://";
-      document.getElementById("inappName").textContent = inAppName;
-      document.getElementById("inapp").classList.remove("hidden");
-      const copy = document.getElementById("copy");
-      copy.addEventListener("click", async () => {
-        try { await navigator.clipboard.writeText(location.href); copy.textContent = "Copied, paste it in Safari"; }
-        catch (e) { copy.textContent = location.href; }
-      });
-    }
     // Try the app; if the page is still on screen a moment later, the app
     // isn't installed, so go to the App Store. Off iPhone the button is just
     // an App Store link (its default href).
-    else if (isIOS) {
+    if (isIOS) {
       document.getElementById("open").addEventListener("click", (e) => {
         e.preventDefault();
         let left = false;
