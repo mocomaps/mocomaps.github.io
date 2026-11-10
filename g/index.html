@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Join a Group · Blazar</title>
+  <meta name="description" content="You're invited to join a group on Blazar." />
+  <meta property="og:title" content="You're invited to join a group" />
+  <meta property="og:description" content="Tap to join on Blazar." />
+  <meta property="og:image" content="https://mocomaps.github.io/g/icon.png" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#111111" />
+  <script>
+    // Smart App Banner hands this exact link to the app, which joins the group.
+    document.write('<meta name="apple-itunes-app" content="app-id=6791011626, app-argument=' +
+      location.href.replace(/"/g, "") + '">');
+  </script>
+  <link rel="icon" href="icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink900: #111111; --paper200: #E9E9EB; --line: #E2E2E5;
+      --gold500: #D93A32; --gold700: #A51F18;
+      --bg: #F4F4F5; --card: #FFFFFF; --text: #111111; --muted: #666666;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B0B0B; --card: #1E1E1E; --text: #FFFFFF; --muted: #ADADAD;
+        --line: #333333; --paper200: #2A2A2A; --gold700: #F06A62;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { background: var(--bg); color: var(--text); }
+    body {
+      font-family: "Bricolage Grotesque", -apple-system, system-ui, sans-serif;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      padding: 0 0 40px; overflow-x: hidden;
+    }
+    .band {
+      width: 100%; background: var(--ink900);
+      padding: max(28px, env(safe-area-inset-top)) 16px 26px;
+      display: flex; justify-content: center;
+    }
+    .wordmark {
+      font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -1px; color: var(--gold500);
+      text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,.35);
+    }
+    .wordmark span {
+      display: block; margin-top: 6px; font: 400 11px "Space Mono", ui-monospace, monospace;
+      letter-spacing: 1.6px; text-transform: uppercase; color: #FFFFFF; opacity: .75; text-shadow: none;
+    }
+    main { width: 100%; max-width: 472px; padding: 0 16px; margin-top: -14px; }
+    .card {
+      background: var(--card); border: 1.5px solid var(--line); border-radius: 22px;
+      padding: 26px 22px 22px; box-shadow: 0 13px 30px rgba(0,0,0,.14);
+    }
+    .kicker {
+      font-family: "Space Mono", ui-monospace, monospace; font-size: 11px; letter-spacing: 1.4px;
+      text-transform: uppercase; color: var(--gold700);
+    }
+    .kicker.proposal { color: var(--muted); }
+    h1 { font-weight: 800; font-size: 34px; line-height: 1.05; letter-spacing: -0.5px; margin: 10px 0 8px; overflow-wrap: anywhere; }
+    .when { font-size: 16px; color: var(--muted); }
+    .rule { height: 2px; background: var(--text); margin: 18px 0 16px; }
+    .row { display: flex; gap: 10px; align-items: baseline; font-size: 15px; margin: 6px 0; }
+    .row b { font-weight: 600; }
+    .pill {
+      display: inline-block; font-family: "Space Mono", monospace; font-size: 10px; letter-spacing: .6px;
+      text-transform: uppercase; padding: 4px 9px; border-radius: 99px; background: var(--paper200);
+      color: var(--text); margin-left: 6px; vertical-align: middle;
+    }
+    .note { font-size: 13px; color: var(--muted); margin-top: 14px; line-height: 1.45; }
+    .center { text-align: center; }
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+      font: 600 17px "Bricolage Grotesque", sans-serif; text-decoration: none;
+      padding: 16px; border-radius: 999px; margin-top: 12px;
+    }
+    .btn.primary { background: var(--gold500); color: #FFFFFF; box-shadow: 0 6px 14px rgba(217,58,50,.35); margin-top: 20px; }
+    .state { text-align: center; padding: 10px 0 4px; }
+    .state h1 { font-size: 26px; }
+    .foot { text-align: center; font-size: 12px; color: var(--muted); margin-top: 22px; }
+    .foot a { color: var(--muted); }
+    .skeleton { background: var(--paper200); border-radius: 8px; height: 14px; margin: 10px 0; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="band"><div class="wordmark">Blazar<span>The Blazer Radar</span></div></div>
+  <main>
+    <div class="card" id="card">
+      <div class="skeleton" style="width:40%"></div>
+      <div class="skeleton" style="height:32px;width:85%"></div>
+      <div class="skeleton" style="width:60%"></div>
+    </div>
+
+    <a class="btn primary" id="open" href="https://apps.apple.com/app/id6791011626">Join in Blazar</a>
+
+    <p class="foot">Blazar · See where the move is in MoCo · <a href="https://yongniuz.github.io/mocomaps-privacy/#privacy">Privacy</a></p>
+  </main>
+
+  <script>
+    // Publishable key: safe in a browser; the preview RPC returns only the
+    // group's name and size, and only to someone holding its code.
+    const SUPABASE_URL = "https://amhuwtbrlwuukoyrsbjs.supabase.co";
+    const SUPABASE_KEY = "sb_publishable__6WOFOo0VKwt0gC0f2oCFw_xODN-JNP";
+    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const APP_STORE = "https://apps.apple.com/app/id6791011626";
+
+    const code = (new URLSearchParams(location.search).get("c") || "").trim();
+    const valid = /^[A-Za-z0-9_-]{3,20}$/.test(code);
+    const card = document.getElementById("card");
+
+    // Try the app; still here a moment later = not installed, so App Store.
+    if (isIOS) {
+      document.getElementById("open").addEventListener("click", (e) => {
+        e.preventDefault();
+        let left = false;
+        const markLeft = () => { left = true; };
+        document.addEventListener("visibilitychange", () => { if (document.hidden) markLeft(); }, { once: true });
+        window.addEventListener("pagehide", markLeft, { once: true });
+        setTimeout(() => { if (!left && !document.hidden) location.href = APP_STORE; }, 2000);
+        location.href = valid ? "mocomaps://g/" + encodeURIComponent(code) : "mocomaps://";
+      });
+    }
+
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+    function stateCard(title, body) {
+      card.innerHTML = `<div class="state"><h1>${esc(title)}</h1><p class="when">${esc(body)}</p></div>`;
+    }
+
+    async function load() {
+      if (!valid) return stateCard("Link not recognized", "Ask whoever sent it to share it again from the app.");
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/group_link_preview`, {
+          method: "POST",
+          headers: { apikey: SUPABASE_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({ p_code: code }),
+        });
+        const g = res.ok ? await res.json() : null;
+        if (!g) return stateCard("This link doesn't work anymore", "The group changed its link. Ask for a new one.");
+        const n = g.member_count;
+        document.title = `Join ${g.name} · Blazar`;
+        card.innerHTML = `
+          <div class="kicker">You're invited to join</div>
+          <h1>${esc(g.name)}</h1>
+          <div class="when">${n} ${n === 1 ? "member" : "members"}</div>`;
+      } catch (e) {
+        stateCard("Couldn't load the group", "Check your connection and try again, or open it in the app.");
+      }
+    }
+    load();
+  </script>
+</body>
+</html>

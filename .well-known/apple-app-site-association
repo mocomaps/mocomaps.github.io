@@ -2,8 +2,19 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["72Q6BRQNFJ.com.ericz.mocomaps"],
-        "components": [{ "/": "/h/*", "comment": "Hangout invite links" }]
+        "appIDs": [
+          "72Q6BRQNFJ.com.ericz.mocomaps"
+        ],
+        "components": [
+          {
+            "/": "/h/*",
+            "comment": "Hangout invite links"
+          },
+          {
+            "/": "/g/*",
+            "comment": "Group join links"
+          }
+        ]
       }
     ]
   }
